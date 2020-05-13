@@ -6,13 +6,18 @@ public class Bullet {
     private int x, y;
     private Dir dir = Dir.DOWN;
     private static final int SPEED = 10, WIDTH = 5, HEIGHT = 5;
+    private boolean live = true;
 
-
-    public Bullet(int x, int y, Dir dir) {
+    public Bullet(int x, int y, Dir dir, boolean live) {
         super();
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.live = live;
+    }
+
+    public boolean isLive() {
+        return live;
     }
 
     public void paint(Graphics g) {
@@ -37,6 +42,11 @@ public class Bullet {
             case DOWN:
                 y += SPEED;
                 break;
+        }
+
+        //Judge whether the bullet is out of the boundary
+        if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
+            live = false;
         }
     }
 }

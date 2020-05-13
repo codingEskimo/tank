@@ -55,7 +55,7 @@ public class Tank {
     public void fire() {
         // In order to draw the Bullet I new, we need to pass the reference of tankFrame to tank class,
         // see the reference code above
-        tankFrame.myBullet = new Bullet(this.x, this.y, this.dir);
+        tankFrame.bullets.add(new Bullet(this.x, this.y, this.dir, true));
 
     }
 }
