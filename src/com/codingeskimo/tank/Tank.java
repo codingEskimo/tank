@@ -7,13 +7,15 @@ public class Tank {
     private Dir dir = Dir.DOWN;
     private static final int SPEED = 5;
     private boolean moving = false;
+    private TankFrame tankFrame = null;
 
-    public Tank(int x, int y, Dir dir, boolean moving) {
+    public Tank(int x, int y, Dir dir, boolean moving, TankFrame tankFrame) {
         super();
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.moving = moving;
+        this.tankFrame = tankFrame;
     }
 
     public void setDir(Dir dir) {
@@ -48,5 +50,12 @@ public class Tank {
                 y += SPEED;
                 break;
         }
+    }
+
+    public void fire() {
+        // In order to draw the Bullet I new, we need to pass the reference of tankFrame to tank class,
+        // see the reference code above
+        tankFrame.myBullet = new Bullet(this.x, this.y, this.dir);
+
     }
 }
