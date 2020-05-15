@@ -5,7 +5,9 @@ import java.awt.*;
 public class Bullet {
     private int x, y;
     private Dir dir = Dir.DOWN;
-    private static final int SPEED = 10, WIDTH = 5, HEIGHT = 5;
+    private static final int SPEED = 10;
+    public static final int WIDTH = ResourceMgr.bulletD.getWidth();
+    public static final int HEIGHT = ResourceMgr.bulletD.getHeight();
     private boolean live = true;
 
     public Bullet(int x, int y, Dir dir, boolean live) {

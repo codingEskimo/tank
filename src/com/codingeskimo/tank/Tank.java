@@ -6,6 +6,8 @@ public class Tank {
     private int x, y;
     private Dir dir = Dir.DOWN;
     private static final int SPEED = 5;
+    public static final int WIDTH = ResourceMgr.tankD.getWidth();
+    public static final int HEIGHT = ResourceMgr.tankD.getHeight();
     private boolean moving = false;
     private TankFrame tankFrame = null;
 
@@ -65,7 +67,9 @@ public class Tank {
     public void fire() {
         // In order to draw the Bullet I new, we need to pass the reference of tankFrame to tank class,
         // see the reference code above
-        tankFrame.bullets.add(new Bullet(this.x, this.y, this.dir, true));
+        int bulletX = this.x + Tank.WIDTH/2 - Bullet.WIDTH/2;
+        int bulletY = this.y + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
+        tankFrame.bullets.add(new Bullet(bulletX, bulletY, this.dir, true));
 
     }
 }
