@@ -8,21 +8,26 @@ public class Bullet {
     private static final int SPEED = 10;
     public static final int WIDTH = ResourceMgr.bulletD.getWidth();
     public static final int HEIGHT = ResourceMgr.bulletD.getHeight();
-    private boolean live = true;
+    private boolean living = true;
+    private TankFrame tankFrame = null;
 
-    public Bullet(int x, int y, Dir dir, boolean live) {
+    public Bullet(int x, int y, Dir dir, boolean living, TankFrame tankFrame) {
         super();
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.live = live;
+        this.living = living;
+        this.tankFrame = tankFrame;
     }
 
     public boolean isLive() {
-        return live;
+        return living;
     }
 
     public void paint(Graphics g) {
+        if (!living) {
+            tankFrame.bullets.remove(this);
+        }
         switch (dir) {
             case LEFT:
                 g.drawImage(ResourceMgr.bulletL, x, y, null);
@@ -59,7 +64,20 @@ public class Bullet {
 
         //Judge whether the bullet is out of the boundary
         if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
-            live = false;
+            living = false;
         }
+    }
+
+    public void collidWith(Tank tank) {
+        Rectangle bRect = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
+        Rectangle tRect = new Rectangle(tank.getX(), tank.getY(), Tank.WIDTH, Tank.HEIGHT);
+        if (bRect.intersects(tRect)) {
+            tank.die();
+            this.die();
+        }
+    }
+
+    private void die() {
+        this.living = false;
     }
 }
