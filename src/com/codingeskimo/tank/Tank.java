@@ -1,33 +1,37 @@
 package com.codingeskimo.tank;
 
 import java.awt.*;
+import java.util.Random;
 
 public class Tank {
     private int x, y;
     private Dir dir = Dir.DOWN;
-    private static final int SPEED = 5;
+    private static final int SPEED = 1;
     public static final int WIDTH = ResourceMgr.tankD.getWidth();
     public static final int HEIGHT = ResourceMgr.tankD.getHeight();
-    private boolean moving = false;
+    private boolean moving = true;
     private TankFrame tankFrame = null;
     private boolean living = true;
+    private Random random = new Random();
+    private Group group = Group.BAD;
 
-    public Tank(int x, int y, Dir dir, boolean moving, TankFrame tankFrame) {
+    public Tank(int x, int y, Dir dir, boolean moving, Group group, TankFrame tankFrame) {
         super();
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.moving = moving;
+        this.group = group;
         this.tankFrame = tankFrame;
     }
 
     public int getX(){ return this.x; }
     public int getY(){ return this.y; }
+    public Group getGroup() { return  this.group; }
 
     public void setDir(Dir dir) {
         this.dir = dir;
     }
-
     public void setMoving(boolean moving) {
         this.moving = moving;
     }
@@ -69,6 +73,10 @@ public class Tank {
                 y += SPEED;
                 break;
         }
+
+        if (this.random.nextInt(10) > 8 && this.group == Group.BAD) {
+            this.fire();
+        }
     }
 
     public void fire() {
@@ -76,7 +84,7 @@ public class Tank {
         // see the reference code above
         int bulletX = this.x + Tank.WIDTH/2 - Bullet.WIDTH/2;
         int bulletY = this.y + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
-        tankFrame.bullets.add(new Bullet(bulletX, bulletY, this.dir, true, this.tankFrame));
+        tankFrame.bullets.add(new Bullet(bulletX, bulletY, this.dir, true, this.group, this.tankFrame));
 
     }
 

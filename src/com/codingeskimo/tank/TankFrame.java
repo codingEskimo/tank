@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class TankFrame extends Frame {
-    Tank myTank = new Tank(200, 200, Dir.DOWN, false, this);
+    Tank myTank = new Tank(200, 200, Dir.DOWN, false, Group.GOOD, this);
     List<Bullet> bullets = new ArrayList<Bullet>();
     List<Tank> enemies = new ArrayList<>();
     public static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
