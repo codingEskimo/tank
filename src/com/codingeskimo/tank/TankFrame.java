@@ -13,8 +13,8 @@ public class TankFrame extends Frame {
     Tank myTank = new Tank(200, 200, Dir.DOWN, false, Group.GOOD, this);
     List<Bullet> bullets = new ArrayList<Bullet>();
     List<Tank> enemies = new ArrayList<>();
-    Explode explode = new Explode(700, 500, true,this);
-    public static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
+    List<Explode> explodes = new ArrayList<>();
+    public static final int GAME_WIDTH = 1080, GAME_HEIGHT = 960;
 
     public TankFrame() {
         setSize(GAME_WIDTH, GAME_HEIGHT);
@@ -59,10 +59,10 @@ public class TankFrame extends Frame {
         g.setColor(Color.WHITE);
         g.drawString("number of bullets:  " + bullets.size(), 20, 60);
         g.drawString("number of enemies:  " + enemies.size(), 20, 80);
+        g.drawString("number of explodes:  " + explodes.size(), 20, 100);
         g.setColor(c);
 
         myTank.paint(g);
-        explode.paint(g);
         /*for (Iterator<Bullet> it = bullets.iterator(); it.hasNext();) {
             Bullet b = it.next();
             if (!b.isLive()){
@@ -79,15 +79,15 @@ public class TankFrame extends Frame {
             enemies.get(i).paint(g);
         }
 
+        for(int i = 0; i < explodes.size(); i++) {
+            explodes.get(i).paint(g);
+        }
+
         for (int i = 0; i < bullets.size(); i++) {
             for (int j = 0; j < enemies.size(); j++) {
                 bullets.get(i).collidWith(enemies.get(j));
             }
         }
-
-        /*for (int i = 0; i < bullets.size(); i++) {
-            bullets.get(i).paint(g);
-        }*/
     }
 
     class MyKeyListener extends KeyAdapter {
