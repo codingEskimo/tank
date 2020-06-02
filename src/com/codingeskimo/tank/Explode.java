@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class Explode {
     private int x, y;
-    public static final int WIDTH = ResourceMgr.bulletD.getWidth();
-    public static final int HEIGHT = ResourceMgr.bulletD.getHeight();
+    public static final int WIDTH = ResourceMgr.explodes[0].getWidth();
+    public static final int HEIGHT = ResourceMgr.explodes[0].getHeight();
     private TankFrame tankFrame = null;
     private int step = 0;
 
