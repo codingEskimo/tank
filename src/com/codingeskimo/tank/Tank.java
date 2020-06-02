@@ -7,8 +7,8 @@ public class Tank {
     private int x, y;
     private Dir dir = Dir.DOWN;
     private static final int SPEED = 3;
-    public static final int WIDTH = ResourceMgr.tankD.getWidth();
-    public static final int HEIGHT = ResourceMgr.tankD.getHeight();
+    public static final int WIDTH = ResourceMgr.gtankD.getWidth();
+    public static final int HEIGHT = ResourceMgr.gtankD.getHeight();
     private boolean moving = true;
     private TankFrame tankFrame = null;
     private boolean living = true;
@@ -48,16 +48,16 @@ public class Tank {
         }
         switch (dir){
             case LEFT:
-                g.drawImage(ResourceMgr.tankL, x, y, null);
+                g.drawImage(this.group == Group.GOOD ? ResourceMgr.gtankL : ResourceMgr.btankL, x, y, null);
                 break;
             case RIGHT:
-                g.drawImage(ResourceMgr.tankR, x, y, null);
+                g.drawImage(this.group == Group.GOOD ? ResourceMgr.gtankR : ResourceMgr.btankR, x, y, null);
                 break;
             case UP:
-                g.drawImage(ResourceMgr.tankU, x, y, null);
+                g.drawImage(this.group == Group.GOOD ? ResourceMgr.gtankU : ResourceMgr.btankU, x, y, null);
                 break;
             case DOWN:
-                g.drawImage(ResourceMgr.tankD, x, y, null);
+                g.drawImage(this.group == Group.GOOD ? ResourceMgr.gtankD : ResourceMgr.btankD, x, y, null);
                 break;
         }
         moving();
@@ -95,8 +95,8 @@ public class Tank {
         if (this.x < 2) {
             x = 2;
         }
-        if (this.y < 2) {
-            y = 2;
+        if (this.y < 30) {
+            y = 30;
         }
         if (this.x > tankFrame.GAME_WIDTH - this.WIDTH - 2) {
             x = tankFrame.GAME_WIDTH - this.WIDTH - 2;
