@@ -11,6 +11,7 @@ public class Bullet {
     private boolean living = true;
     private TankFrame tankFrame = null;
     private Group group = Group.BAD;
+    public Rectangle rectangle = new Rectangle();
 
     public Bullet(int x, int y, Dir dir, boolean living, Group group, TankFrame tankFrame) {
         super();
@@ -20,6 +21,11 @@ public class Bullet {
         this.living = living;
         this.group = group;
         this.tankFrame = tankFrame;
+
+        rectangle.x = this.x;
+        rectangle.y = this.y;
+        rectangle.width = this.WIDTH;
+        rectangle.height = this.HEIGHT;
     }
 
     public boolean isLive() {
@@ -68,14 +74,15 @@ public class Bullet {
         if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
             living = false;
         }
+
+        rectangle.x = this.x;
+        rectangle.y = this.y;
     }
 
     public void collidWith(Tank tank) {
         if (this.group == tank.getGroup()) { return; }
 
-        Rectangle bRect = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
-        Rectangle tRect = new Rectangle(tank.getX(), tank.getY(), Tank.WIDTH, Tank.HEIGHT);
-        if (bRect.intersects(tRect)) {
+        if (rectangle.intersects(tank.rectangle)) {
             tank.die();
             this.die();
             int ex = tank.getX() + Tank.WIDTH/2 - Explode.WIDTH/2;
