@@ -74,11 +74,17 @@ public class Tank {
                 break;
         }
 
-        if (this.random.nextInt(10) > 8 && this.group == Group.BAD) {
+        if (this.group == Group.BAD && this.random.nextInt(100) > 90 ) {
             this.fire();
+        }
+        if (this.group == Group.BAD && this.random.nextInt(100) > 95) {
+            this.setRandomDirection();
         }
     }
 
+    private void setRandomDirection() {
+        this.dir = Dir.values()[this.random.nextInt(4)];
+    }
     public void fire() {
         // In order to draw the Bullet I new, we need to pass the reference of tankFrame to tank class,
         // see the reference code above
