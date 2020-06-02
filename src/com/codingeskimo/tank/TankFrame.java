@@ -13,6 +13,7 @@ public class TankFrame extends Frame {
     Tank myTank = new Tank(200, 200, Dir.DOWN, false, Group.GOOD, this);
     List<Bullet> bullets = new ArrayList<Bullet>();
     List<Tank> enemies = new ArrayList<>();
+    Explode explode = new Explode(700, 500, true,this);
     public static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
 
     public TankFrame() {
@@ -61,6 +62,7 @@ public class TankFrame extends Frame {
         g.setColor(c);
 
         myTank.paint(g);
+        explode.paint(g);
         /*for (Iterator<Bullet> it = bullets.iterator(); it.hasNext();) {
             Bullet b = it.next();
             if (!b.isLive()){
