@@ -8,7 +8,8 @@ public class Main {
     public static void main(String[] args) throws InterruptedException{
         TankFrame tf  = new TankFrame();
 
-        for (int i = 0; i < 5; i++) {
+        int enemiesCount = Integer.parseInt((String)PropertyMgr.get("initialEnemiesCount"));
+        for (int i = 0; i < enemiesCount; i++) {
             tf.enemies.add(new Tank(100 * i, 100, Dir.DOWN, true, Group.BAD, tf));
         }
 
