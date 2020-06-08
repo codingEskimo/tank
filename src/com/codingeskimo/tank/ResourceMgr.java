@@ -9,11 +9,16 @@ import java.io.IOException;
  * **/
 
 public class ResourceMgr {
+    private static final ResourceMgr INSTANCE = new ResourceMgr();
     public static BufferedImage gtankL, gtankR, gtankU, gtankD;
     public static BufferedImage btankL, btankR, btankU, btankD;
     public static BufferedImage bulletL, bulletR, bulletU, bulletD;
     public static BufferedImage[] explodes = new BufferedImage[16];
 
+    private ResourceMgr(){}
+    public static ResourceMgr getInstance(){
+        return INSTANCE;
+    }
     static {
         try {
             gtankU = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images\\GoodTank1.png"));

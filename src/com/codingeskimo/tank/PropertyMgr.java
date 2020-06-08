@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class PropertyMgr {
-    public static Properties properties = new Properties();
+    private static Properties properties = new Properties();
+    private PropertyMgr(){}
 
     static {
         try {
