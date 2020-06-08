@@ -116,7 +116,7 @@ public class Tank {
         int bulletX = this.x + Tank.WIDTH/2 - Bullet.WIDTH/2;
         int bulletY = this.y + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
         tankFrame.bullets.add(new Bullet(bulletX, bulletY, this.dir, true, this.group, this.tankFrame));
-
+        if(group == Group.GOOD) new Thread(()->new Audio("audio/tank_fire.wav").play()).start();
     }
 
     public void die() {
