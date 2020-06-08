@@ -12,7 +12,7 @@ public class Main {
         for (int i = 0; i < enemiesCount; i++) {
             tf.enemies.add(new Tank(100 * i, 100, Dir.DOWN, true, Group.BAD, tf));
         }
-
+        new Thread(()->new Audio("audio/war1.wav").loop()).start();
         while(true) {
             Thread.sleep(50);
             tf.repaint();
